@@ -53,11 +53,21 @@ router.route('/:book_id')
         res.json(updated_books)
     })
 
+    // .delete((req, res) => {
+    //     books=books.filter((b) => {
+    //         return b.id != req.params.book_id
+    //     })
+    //     res.json(books)
+    // })
+
     .delete((req, res) => {
-        books = books.filter((b) => {
-            return b.id != req.params.book_id
-        })
-        res.json(books)
-    })
+        const index = books.findIndex((b) => b.id === parseInt(req.params.book_id));
+        if (index === -1) {
+          return res.status(404).json({ error: 'Book not found' });
+        }
+        books.splice(index, 1);
+        res.json(books);
+      });
+    
 
 module.exports = router
