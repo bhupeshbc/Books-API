@@ -1,9 +1,22 @@
 require('dotenv').config()
 const exp = require('express');
+const mongoose = require('mongoose')
 let books = require('./data/books')
-const broute = require('./routes/book-routes')
+
+const book_routes = require(`./routes/book-routes`)
 
 const port = process.env.PORT
+
+mongoose.connect('mongodb://127.0.0.1:27017/demo')
+    .then(()=>{
+        console.log(`bluetooth device connected successfully`)
+    })
+    .catch((err)=> console.log(err))
+
+
+const broute = require('./routes/book-routes')
+
+
 const app = exp();
 
 // Middle Wear - software that lies between an operating system and the applications running on it(Cerates a response for a request)
@@ -20,7 +33,7 @@ app.get('/', (request, response) => {
 app.use('/api/books', broute)
 
 app.listen(port, () => {
-    console.log(`Server is running at port ${port}`);
+    console.log(` Server is running at port ${port}`);
 })
 
 // app.get('/api/books', (req, res) => {
