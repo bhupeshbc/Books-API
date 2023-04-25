@@ -36,7 +36,7 @@ router.route('/')
         // }
     })
 
-    .post((req, res) => {
+    .post((req, res, next) => {
         // if(!req.body.title){
         //     return res.status(400).json({error: 'Title is missing'})
         // }
@@ -52,7 +52,7 @@ router.route('/')
 
         Book.create(req.body)
         .then((book) => res.status(201).json(book))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
     })
 
     .put((req, res) => {
@@ -62,7 +62,7 @@ router.route('/')
     .delete((req, res) => {
         book.deleteMany()
             .then(reply => res.json(reply))
-            .catch(err => console.log(err))
+            .catch(err => next(err))
     })
     
 router.route('/:book_id')
@@ -74,7 +74,7 @@ router.route('/:book_id')
         // res.json(book);
         Book.findById(req.params.book_id)
         .then((book) => res.json(book))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
     })
 
     .post((req, res) => {
@@ -96,7 +96,7 @@ router.route('/:book_id')
             { new : true}
         )
         .then(updated => res.json(updated))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
     })
 
     .delete((req, res) => {
@@ -108,7 +108,7 @@ router.route('/:book_id')
         // res.json(books);
         Book.findOneAndDelete(req.params.book_id)
             .then(reply => res.status(204).end())
-            .catch(err => console.log(err))
+            .catch(err => next(err))
     });
       
     // .delete((req, res) => {
