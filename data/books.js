@@ -11,7 +11,19 @@ const books = [
     } 
 ]
 
-module.exports = books;
+// module.exports = books;
 
+// const mongoose = require('mongoose')
+// const bookSchema = new mongoose.Schema({
+//     title:{
+//         type: String,
+//         required: true
+//     }, 
+//     author: {
+//         type: String,
+//         defaults: 'anonymous'
+//     }
+// }, {timestamps: true})
 
+// module.exports = mongoose.model('book', bookSchema)
 

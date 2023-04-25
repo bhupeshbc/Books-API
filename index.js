@@ -30,11 +30,12 @@ app.get('/', (request, response) => {
     response.send('Hello')
 });
 
-app.use('/api/books', broute)
+app.use('/books', broute)
 
 app.listen(port, () => {
     console.log(` Server is running at port ${port}`);
 })
+
 
 // app.get('/api/books', (req, res) => {
 //     res.json(books);
