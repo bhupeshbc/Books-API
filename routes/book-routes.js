@@ -8,7 +8,8 @@ const router = express.Router()
 // This makes codes organized rather then writing everthing in one file
 router.route('/')
     .get(async (req, res) => {
-        // Approch 1 (Better)(async not needed in function)
+        // Approch 1 
+        // (Better)(async not needed in function)
         // Book.find()
         //     .then (books => res.json(books))
         //     .catch (err => console.log(err))
