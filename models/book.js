@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const reviewSchema = new mongoose.Schema({
-    text : {
-        type : String,
-        required : true,
-        minlength : 10
+    text: {
+        type: String,
+        required: true,
+        minLength: 10
     }
 })
 
@@ -24,16 +24,14 @@ const bookSchema = new mongoose.Schema({
         type: String,
         default: 'Anonymous'
     },
-    // Embedding
     reviews: [reviewSchema]
-}, {timestamps: true})
-// timestamps store time to server
+}, { timestamps: true })
 
 bookSchema.set('toJSON', {
     transform: (document, returnedDocument) => {
         returnedDocument.id = document._id.toString()
         delete returnedDocument._id
-        delete returnedDocument.__V
+        delete returnedDocument.__v
     }
 })
 
